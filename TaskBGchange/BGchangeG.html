@@ -39,31 +39,45 @@
 
 
   //method 2
-  let thirdEle = document.getElementsByClassName('list-group-item');
-  thirdEle[2].style.backgroundColor="green"
+//   let thirdEle = document.getElementsByClassName('list-group-item');
+//   thirdEle[2].style.backgroundColor="green"
   
-  //bold color font---------TASK---------
+//   //bold color font---------TASK---------
 
  
-  // for(let i=0; i<thirdEle.length; i++){
-  //   thirdEle.style.backgroundColor='red'
-  // }
+//   // for(let i=0; i<thirdEle.length; i++){
+//   //   thirdEle.style.backgroundColor='red'
+//   // }
 
-  let bgc = document.getElementsByClassName('list-group')
-  console.log(bgc);
+//   let bgc = document.getElementsByClassName('list-group')
+//   console.log(bgc);
 
- // bgc.style.backgroundColor = 'red'
+//  // bgc.style.backgroundColor = 'red'
 
-  for(let i=0; i<thirdEle.length; i++){
-    thirdEle[i].style.backgroundColor='red'
-    thirdEle[i].style.color='white'
-  }
+//   for(let i=0; i<thirdEle.length; i++){
+//     thirdEle[i].style.backgroundColor='red'
+//     thirdEle[i].style.color='white'
+//   }
 
-  // Add a new li element without the same class Name--------TASK-------
+//   // Add a new li element without the same class Name--------TASK-------
 
-let addTag = document.getElementsByClassName("list-group")
-console.log(addTag);
-addTag.innerHTML = "<li> item 6 </li>"
+// let addTag = document.getElementsByClassName("list-group")
+// console.log(addTag);
+// addTag.innerHTML = "<li> item 6 </li>"
+
+//-----------------------------------------------------------------
+
+
+//Make the 2nd item have green background color----TASK-------
+
+let item = document.querySelector('.list-group-item:nth-child(2)')
+item.style.backgroundColor='green'
+
+
+//Make the 3rd item invisible ---------TASK------
+
+let thirdItem = document.querySelector(".list-group-item:nth-child(3)")
+thirdItem.remove()
 
 </script>
 </body>
