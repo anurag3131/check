@@ -27,12 +27,13 @@
       <li class="list-group-item">Item 2</li>
       <li class="list-group-item" id="third">Item 3</li>
       <li class="list-group-item">Item 4</li>
+      <li>Item 5</li>
     </ul>
    </div>
   </div>
 <script>
-  // method 1
-  //   let thirdEle = document.querySelector('#third');
+  // method 1  -----TASK------
+  //   let thirdEle = document.querySelector("list-group-item");
   //   // console.log(thirdEle);
   // thirdEle.style.backgroundColor ='green'
 
@@ -41,7 +42,7 @@
   let thirdEle = document.getElementsByClassName('list-group-item');
   thirdEle[2].style.backgroundColor="green"
   
-  //bold color font--
+  //bold color font---------TASK---------
 
  
   // for(let i=0; i<thirdEle.length; i++){
@@ -57,6 +58,13 @@
     thirdEle[i].style.backgroundColor='red'
     thirdEle[i].style.color='white'
   }
+
+  // Add a new li element without the same class Name--------TASK-------
+
+let addTag = document.getElementsByClassName("list-group")
+console.log(addTag);
+addTag.innerHTML = "<li> item 6 </li>"
+
 </script>
 </body>
 </html>
