@@ -35,6 +35,7 @@
         <h2 class="title">Add Items</h2>
         <form id="addForm" class="form-inline mb-3">
           <input type="text" class="form-control mr-2" id="item" />
+          <input type="text" class="form-control mr-2" id="des" />
           <input type="submit" class="btn btn-dark" value="+" />
         </form>
         <h2 class="title">Items</h2>
@@ -59,45 +60,109 @@
       </div>
     </div>
     <script>
-        // const form = document.getElementById('addform');
-        // const itemList = document.getElementById('items');
+      // const form = document.getElementById('addForm');
+      // const itemList = document.getElementById('items');
 
-        // form.addEventListener('submit', addItem);
-        //  function addItem(e){  
-        //     e.preventDefault();
-        //     const newItem = document.getElementById('item').value;
-        //     const li = document.createElement('li');
-        //     li.className = 'list-group-item';
-        //     // li.textContent = newItem;
-        //     li.appendChild(document.createTextNode(newItem));
+      // form.addEventListener('submit', addItem);
+      //  function addItem(e){
+      //     e.preventDefault();
+      //     const newItem = document.getElementById('item').value;
+      //     const li = document.createElement('li');
+      //     li.className = 'list-group-item';
+      //     // li.textContent = newItem;
+      //     li.appendChild(document.createTextNode(newItem));
 
-        //     itemList.appendChild(li);
-        // }
+      //     itemList.appendChild(li);
+      // }
 
-        const form = document.getElementById('addForm');
-        const itemList = document.getElementById('items');
+      const form = document.getElementById("addForm");
+      const itemList = document.getElementById("items"); //UL
+      const filter = document.getElementById("filter"); //UL
+      const filterC = document.getElementsByClassName("form-control"); //UL
+    
+      // const anotherInput = document.createElement("li");
+      // anotherInput.setAttribute("type", "text");
+      // anotherInput.className = "form-control mr-2";
+      // anotherInput.id = "item";
+      // itemList.insertBefore(anotherInput, itemList.children[0]);
 
-        form.addEventListener('submit', addItem);
-        function addItem(e){  
-  e.preventDefault();
- 
-            const newItem = document.getElementById('item').value;
-            const li = document.createElement('li');
-            li.className = 'list-group-item';
-            li.textContent = newItem;
+      form.addEventListener("submit", addItem);
+      itemList.addEventListener("click", removeItem);
+      filter.addEventListener("keyup", filterItems);
+      // filter.addEventListener("keyup", filterItemsC);
+      
+      
+      
+      function addItem(e) {
+        e.preventDefault();
 
- const dltBtn = document.createElement('button')
- dltBtn.className = 'btn btn-danger btn-sm float-right delete'
- dltBtn.textContent = 'X' 
- li.appendChild(dltBtn)
-  itemList.appendChild(li);
+        const newItem = document.getElementById("item").value;
+        const li = document.createElement("li");
+        const anotherInput = document.getElementById("des").value;
 
-  const EditBtn = document.createElement('button')
-  EditBtn.className = 'btn btn-success btn-sm float-right mr-2'
-  EditBtn.textContent = 'Edit'
-  li.appendChild(EditBtn)
- }
+        li.className = "list-group-item";
+        li.textContent = newItem;
+        //li.textContent = anotherInput;
+        li.appendChild(document.createTextNode(anotherInput));
+        
+        const dltBtn = document.createElement("button");
+        dltBtn.className = "btn btn-danger btn-sm float-right delete";
+        dltBtn.textContent = "X";
+        li.appendChild(dltBtn);
+        itemList.appendChild(li);
 
+        const EditBtn = document.createElement("button");
+        EditBtn.className = "btn btn-success btn-sm float-right mr-2";
+        EditBtn.textContent = "Edit";
+        li.appendChild(EditBtn);
+      }
+
+      function removeItem(e) {
+        if (e.target.classList.contains("delete")) {
+          if (confirm("Pakka?")) {
+            const li = e.target.parentElement;
+            //li.removeItem();
+            itemList.removeChild(li);
+          }
+        }
+      }
+      // const li = document.createElement("li");
+      // let secondI = li.appendChild(document.createTextNode(anotherInput)).toLowerCase;
+      // console.log('secondI');
+
+      function filterItems(e){
+        let text = e.target.value.toLowerCase();
+        let searchItem = itemList.getElementsByTagName('li');
+        Array.from(searchItem).forEach(function(list){
+          let names = list.childNodes[1].innerText;
+          if(names.toLowerCase().indexOf(text) != -1){
+            list.style.display = 'block'
+          } 
+          else{
+            list.style.display = 'none';
+          }
+        });
+      }
+
+
+      // function filterItemsC(e){
+      //   let text = e.target.value.toLowerCase();
+      //   let searchItem = itemList.getElementsByTagName('li');
+      //   Array.from(searchItem).forEach(function(list){
+      //     let names = list.firstChild.innerText;
+         
+      //     if(names.toLowerCase().indexOf(text)  != -1){
+      //       list.style.display = 'block'
+      //     } 
+      //     else{
+      //       list.style.display = 'none';
+            
+      //     }
+      //   });
+      // }
+
+     
+      
 
     </script>
   </body>
