@@ -106,7 +106,7 @@
         <input class="btn" type="submit" value="Submit" />
       </form>
 
-      <ul id="users"></ul>
+      
 
       <!-- <ul class="items">
         <li class="item">Item 1</li>
@@ -114,8 +114,10 @@
         <li class="item">Item 3</li>
       </ul> -->
     </section>
-
+    <ul id="users"></ul>
     <script>
+      
+
       function locali(event) {
         let name = event.target.name.value;
         let email = event.target.email.value;
@@ -126,7 +128,16 @@
         };
 
         localStorage.setItem("user", JSON.stringify(obj));
-        JSON.parse(localStorage.getItem("user"));
+        //let storedUser = JSON.parse(localStorage.getItem("user"));
+        
+        storingData(obj)
+      }
+
+      function storingData(obj){
+        let newUser = document.getElementById('users')
+         //let newLi = newUser.createElement('li')
+        // newLi.appendChild(document.createTextNode(storedUser))
+        newUser.innerHTML = `<li>${obj.name} - ${obj.email}</li>`
       }
     </script>
   </body>
