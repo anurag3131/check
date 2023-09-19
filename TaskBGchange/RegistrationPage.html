@@ -97,11 +97,11 @@
         <div class="msg"></div>
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="uname" required autocomplete="on"/>
+          <input type="text" id="name" name="name" required autocomplete="on" />
         </div>
         <div>
           <label for="email">Email:</label>
-          <input type="text" id="email" name="emaili" />
+          <input type="text" id="email" name="email" />
         </div>
         <input class="btn" type="submit" value="Submit" />
       </form>
@@ -117,22 +117,16 @@
 
     <script>
       function locali(event) {
-        //event.preventDefault();
-        const name = event.target.uname.value;
-        const email = event.target.emaili.value;
+        let name = event.target.name.value;
+        let email = event.target.email.value;
 
-        localStorage.setItem('name', name);
-        localStorage.setItem('email', email);
+        let obj = {
+          name,
+          email,
+        };
 
-        
-        
-        // localStorage.setItem("user", JSON.stringify(obj));
-
-        
-        // const storedUser = JSON.parse(localStorage.getItem("user"));
-        // console.log("Stored User:", storedUser);
-
-        
+        localStorage.setItem("user", JSON.stringify(obj));
+        JSON.parse(localStorage.getItem("user"));
       }
     </script>
   </body>
