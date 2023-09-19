@@ -92,16 +92,16 @@
     </header>
 
     <section class="container">
-      <form onsubmit="locali(event)" id="my-form">
+      <form onsubmit="locali(event)" id="my-form" autocomplete="on">
         <h1>Add User</h1>
         <div class="msg"></div>
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name" />
+          <input type="text" id="name" name="uname" required autocomplete="on"/>
         </div>
         <div>
           <label for="email">Email:</label>
-          <input type="text" id="email" name="email" />
+          <input type="text" id="email" name="emaili" />
         </div>
         <input class="btn" type="submit" value="Submit" />
       </form>
@@ -117,21 +117,20 @@
 
     <script>
       function locali(event) {
-        event.preventDefault();
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
+        //event.preventDefault();
+        const name = event.target.uname.value;
+        const email = event.target.emaili.value;
 
-        const obj = {
-          name,
-          email
-        };
+        localStorage.setItem('name', name);
+        localStorage.setItem('email', email);
 
         
-        localStorage.setItem("user", JSON.stringify(obj));
+        
+        // localStorage.setItem("user", JSON.stringify(obj));
 
         
-        const storedUser = JSON.parse(localStorage.getItem("user"));
-        console.log("Stored User:", storedUser);
+        // const storedUser = JSON.parse(localStorage.getItem("user"));
+        // console.log("Stored User:", storedUser);
 
         
       }
