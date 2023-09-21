@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form id="user-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" />
+      <button type="submit">Submit</button>
+      <button type="reset" id="reset-btn">Reset</button>
+    </form>
+    <ul id="user-list" class="clist">
+      <!-- User data will be added here -->
+    </ul>
+
+    <script>
+      const userForm = document.getElementById("user-form");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const userList = document.getElementById("user-list");
+      const resetBtn = document.getElementById("reset-btn");
+
+      //load existing users .....
+      //loadUser();
+
+      userForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = nameInput.value;
+        const email = emailInput.value;
+
+        if (!name || !email) {
+          alert("Please enter user details");
+          return;
+        }
+
+        const user = {
+          name,
+          email,
+        };
+
+        localStorage.setItem(email, JSON.stringify(user));
+
+        addToList(user);
+        resetForm();
+      });
+
+      resetBtn.addEventListener("click", function () {
+        resetForm();
+      });
+      function addToList(user) {
+        const li = document.createElement("li");
+        li.textContent = `${user.name} - ${user.email}`;
+
+        const editBtn = createButton("Edit", function () {
+          editUser(user);
+        });
+        const deleteBtn = createButton("Delete", function () {
+          deleteUser(user);
+        });
+
+        li.appendChild(editBtn);
+        li.appendChild(deleteBtn);
+        userList.appendChild(li);
+
+
+        function deleteUser(user) {
+        localStorage.removeItem(user);
+        userList.removeChild(li);
+      }
+      }
+
+      function createButton(text, clickHandler) {
+        const button = document.createElement("button");
+        button.textContent = text;
+        button.addEventListener("click", clickHandler);
+        return button;
+      }
+
+      // function loadUser(){
+      //   for(let i = 0; i<localStorage.length; i++){
+      //     const email = localStorage.key(i);
+      //     const UserData = JSON.parse(localStorage.getItem(email))
+      //     addToList(UserData)
+      //   }
+      // }
+
+      function editUser(user) {
+        nameInput.value = user.name;
+        emailInput.value = user.email;
+        deleteUser(user.email);
+      }
+
+      
+
+      function resetForm() {
+        nameInput.value = "";
+        emailInput.value = "";
+      }
+    </script>
+  </body>
+</html>
