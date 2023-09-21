@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>JS For Beginners</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <style>
       * {
         margin: 0;
@@ -19,7 +19,7 @@
       }
 
       ul {
-        list-style: none;
+        list-style:
       }
 
       ul li {
@@ -105,20 +105,20 @@
         </div>
         <input class="btn" type="submit" value="Submit" />
       </form>
-
-      
-
+      <ul id="usersty">
+        
+      </ul>
       <!-- <ul class="items">
         <li class="item">Item 1</li>
         <li class="item">Item 2</li>
         <li class="item">Item 3</li>
       </ul> -->
-    </section>
-    <ul id="users"></ul>
+    </section> 
     <script>
+      let newUser = document.getElementById('usersty');
       
-
       function locali(event) {
+       event.preventDefault()
         let name = event.target.name.value;
         let email = event.target.email.value;
 
@@ -131,13 +131,33 @@
         //let storedUser = JSON.parse(localStorage.getItem("user"));
         
         storingData(obj)
+
+        
       }
 
       function storingData(obj){
-        let newUser = document.getElementById('users')
-         //let newLi = newUser.createElement('li')
-        // newLi.appendChild(document.createTextNode(storedUser))
-        newUser.innerHTML = `<li>${obj.name} - ${obj.email}</li>`
+        
+        let newLi = document.createElement('li')
+        //newLi.id = 'savedUser'
+        newLi.textContent = `${obj.name} - ${obj.email}`
+        newUser.appendChild(newLi)
+        newLi.id= "newLi"
+        //newUser.innerHTML = `<li>${obj.name} - ${obj.email}</li>`
+      
+        let dltBtn = document.createElement('button')
+        dltBtn.textContent = 'Delete'
+        // dltBtn.id = 'dltList'
+        dltBtn.className = "btn btn-outline-danger"
+        newLi.appendChild(dltBtn)
+        // newUser.appendChild(newLi)
+        dltBtn.addEventListener("click", function(){
+        
+        if(confirm("Pakka?")){
+          usersty.removeChild(newLi)
+          localStorage.removeItem(obj.email);
+
+        }
+      }  )
       }
     </script>
   </body>
